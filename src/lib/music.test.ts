@@ -1,5 +1,13 @@
-import { describe, expect, it, vi } from 'vitest'
-import { createQuestion, getAccuracy, getNoteAtPosition, MAX_FRET } from './music'
+import { describe, expect, it } from 'vitest'
+import {
+  MAX_FRET,
+  MIN_PRACTICE_FRET,
+  TOTAL_PRACTICE_POSITIONS,
+  createPracticeQuestions,
+  createQuestion,
+  getAccuracy,
+  getNoteAtPosition,
+} from './music'
 
 describe('music helpers', () => {
   it('calculates note names across the fretboard', () => {
@@ -10,19 +18,27 @@ describe('music helpers', () => {
     expect(getNoteAtPosition({ stringIndex: 5, fretIndex: 12 })).toBe('E')
   })
 
-  it('creates questions inside the supported range', () => {
-    const randomSpy = vi.spyOn(Math, 'random')
-    randomSpy.mockReturnValueOnce(0.51).mockReturnValueOnce(0.99)
+  it('creates a question from a specific position', () => {
+    const question = createQuestion({ stringIndex: 3, fretIndex: 7 })
 
-    const question = createQuestion()
-
-    expect(question.position.stringIndex).toBeGreaterThanOrEqual(0)
-    expect(question.position.stringIndex).toBeLessThanOrEqual(5)
-    expect(question.position.fretIndex).toBeGreaterThanOrEqual(0)
-    expect(question.position.fretIndex).toBeLessThanOrEqual(MAX_FRET)
+    expect(question.position.stringIndex).toBe(3)
+    expect(question.position.fretIndex).toBe(7)
     expect(question.correctNote).toBe(getNoteAtPosition(question.position))
+  })
 
-    randomSpy.mockRestore()
+  it('creates 72 unique practice questions from fret 1 to fret 12', () => {
+    const questions = createPracticeQuestions()
+
+    expect(questions).toHaveLength(TOTAL_PRACTICE_POSITIONS)
+    expect(new Set(questions.map((question) => `${question.position.stringIndex}-${question.position.fretIndex}`)).size)
+      .toBe(TOTAL_PRACTICE_POSITIONS)
+
+    for (const question of questions) {
+      expect(question.position.stringIndex).toBeGreaterThanOrEqual(0)
+      expect(question.position.stringIndex).toBeLessThanOrEqual(5)
+      expect(question.position.fretIndex).toBeGreaterThanOrEqual(MIN_PRACTICE_FRET)
+      expect(question.position.fretIndex).toBeLessThanOrEqual(MAX_FRET)
+    }
   })
 
   it('returns rounded accuracy', () => {

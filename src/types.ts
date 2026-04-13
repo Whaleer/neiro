@@ -38,6 +38,8 @@ export type PracticeStats = {
   correct: number
 }
 
+export type GameStatus = 'idle' | 'active' | 'answered' | 'completed'
+
 export type Translations = {
   languageLabel: string
   chinese: string
@@ -72,4 +74,13 @@ export type Translations = {
   totalLabel: string
   accuracyLabel: string
   targetLabel: string
+  progressLabel: string
+  restartButton: string
+  statusCompleted: string
+  summaryTitle: string
+  summaryBody: string
+  incorrectLabel: string
+  soundOn: string
+  soundOff: string
+  soundToggleLabel: string
 }

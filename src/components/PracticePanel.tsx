@@ -1,7 +1,5 @@
 import { getAccuracy } from '../lib/music'
-import type { PracticeStats, Question, Translations } from '../types'
-
-type GameStatus = 'idle' | 'active' | 'answered'
+import type { GameStatus, PracticeStats, Question, Translations } from '../types'
 
 type PracticePanelProps = {
   gameStatus: GameStatus
@@ -28,9 +26,9 @@ export function PracticePanel({
 
   return (
     <section className="control-bar">
-      {gameStatus === 'idle' ? (
+      {gameStatus === 'idle' || gameStatus === 'completed' ? (
         <button className="primary-button" type="button" onClick={onStart}>
-          {t.startButton}
+          {gameStatus === 'completed' ? t.restartButton : t.startButton}
         </button>
       ) : (
         <button className="primary-button" type="button" onClick={onNext} disabled={gameStatus === 'active'}>

@@ -3,6 +3,8 @@ import type { FretPosition, NoteName, Question, TuningNote } from '../types'
 export const NOTE_SEQUENCE: NoteName[] = ['C', 'bD', 'D', 'bE', 'E', 'F', 'bG', 'G', 'bA', 'A', 'bB', 'B']
 export const STANDARD_TUNING: TuningNote[] = ['E', 'B', 'G', 'D', 'A', 'E']
 export const MAX_FRET = 12
+export const MIN_PRACTICE_FRET = 1
+export const TOTAL_PRACTICE_POSITIONS = STANDARD_TUNING.length * MAX_FRET
 
 export function getNoteAtPosition(position: FretPosition): NoteName {
   const openStringNote = STANDARD_TUNING[position.stringIndex]
@@ -10,17 +12,31 @@ export function getNoteAtPosition(position: FretPosition): NoteName {
   return NOTE_SEQUENCE[(openNoteIndex + position.fretIndex) % NOTE_SEQUENCE.length]
 }
 
-export function createQuestion(): Question {
-  const position = {
-    stringIndex: Math.floor(Math.random() * STANDARD_TUNING.length),
-    fretIndex: Math.floor(Math.random() * (MAX_FRET + 1)),
-  }
-
+export function createQuestion(position: FretPosition): Question {
   return {
     id: `${position.stringIndex}-${position.fretIndex}-${crypto.randomUUID()}`,
     position,
     correctNote: getNoteAtPosition(position),
   }
+}
+
+export function createPracticeQuestions() {
+  const positions: FretPosition[] = []
+
+  for (let stringIndex = 0; stringIndex < STANDARD_TUNING.length; stringIndex += 1) {
+    for (let fretIndex = MIN_PRACTICE_FRET; fretIndex <= MAX_FRET; fretIndex += 1) {
+      positions.push({ stringIndex, fretIndex })
+    }
+  }
+
+  for (let index = positions.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1))
+    const current = positions[index]
+    positions[index] = positions[randomIndex]
+    positions[randomIndex] = current
+  }
+
+  return positions.map((position) => createQuestion(position))
 }
 
 export function getAccuracy(stats: { correct: number; total: number }) {
