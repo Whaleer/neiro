@@ -299,7 +299,7 @@
 /* ---- Fretboard Panel ---- */
 
 .fretboard-panel {
-  background: #F6F4E8;
+  background: #F9F6F1;
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 22px 18px 14px;
@@ -319,7 +319,7 @@
 }
 
 .fretboard-scroll::-webkit-scrollbar-thumb {
-  background: #a8b8a8;
+  background: #BFA28C;
   border-radius: 2px;
 }
 
@@ -395,7 +395,7 @@
   right: 0;
   bottom: 0;
   width: 1px;
-  background: #b5c4b5;
+  background: #BFA28C;
   z-index: 0;
   pointer-events: none;
 }
@@ -410,7 +410,7 @@
 
 .fret-cell.open-string::after {
   width: 3px;
-  background: #a8b8a8;
+  background: #BFA28C;
 }
 
 .fret-cell.last-fret::after {
@@ -425,7 +425,7 @@
   top: 50%;
   height: var(--string-weight, 1.5px);
   transform: translateY(-50%);
-  background: #9aaa9a;
+  background: #BFA28C;
   z-index: 1;
   pointer-events: none;
   border-radius: 1px;
@@ -791,23 +791,25 @@
 }
 
 .answer-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 4px;
+  row-gap: 6px;
   justify-content: center;
 }
 
 .note-button {
-  width: 64px;
-  height: 46px;
+  width: 60px;
+  height: 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: 20px;
   background: #FFF8EC;
   font-weight: 600;
   font-size: 0.92rem;
   color: var(--text-main);
   cursor: pointer;
   transition: 0.3s;
+  justify-self: center;
 }
 
 .note-button-label {
@@ -1005,6 +1007,47 @@
     padding: 3px 10px;
   }
 
+  .fretboard {
+    min-width: 540px;
+  }
+
+  .fret-label-row,
+  .string-row {
+    grid-template-columns: 32px repeat(13, minmax(36px, 1fr));
+  }
+
+  .string-label {
+    left: 29px;
+    font-size: 0.76rem;
+    padding-right: 6px;
+  }
+
+  .fret-label {
+    font-size: 0.62rem;
+  }
+
+  .fret-cell {
+    height: 40px;
+  }
+
+  .fret-cell.is-target .fret-marker,
+  .fret-cell.is-correct .fret-marker,
+  .fret-cell.is-incorrect .fret-marker,
+  .fret-cell.is-found .fret-marker,
+  .fret-cell.has-mistake .fret-marker {
+    width: 20px;
+    height: 20px;
+  }
+
+  .welcome-dot {
+    width: 24px;
+    height: 24px;
+  }
+
+  .fret-found-label {
+    font-size: 0.64rem;
+  }
+
   .fretboard-panel {
     padding: 16px 12px 10px;
     border-radius: 14px;
@@ -1024,18 +1067,73 @@
   }
 
   .answer-grid {
-    gap: 6px;
+    gap: 5px;
   }
 
   .note-button {
-    width: 56px;
-    height: 42px;
+    width: 52px;
+    height: 36px;
     font-size: 0.85rem;
+    border-radius: 18px;
   }
 
   .top-controls-fixed {
     top: 10px;
     right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fretboard {
+    min-width: 460px;
+  }
+
+  .fret-label-row,
+  .string-row {
+    grid-template-columns: 28px repeat(13, minmax(32px, 1fr));
+  }
+
+  .string-label {
+    left: 25px;
+    font-size: 0.72rem;
+    padding-right: 4px;
+  }
+
+  .fret-label {
+    font-size: 0.58rem;
+  }
+
+  .fret-cell {
+    height: 38px;
+  }
+
+  .fret-cell.is-target .fret-marker,
+  .fret-cell.is-correct .fret-marker,
+  .fret-cell.is-incorrect .fret-marker,
+  .fret-cell.is-found .fret-marker,
+  .fret-cell.has-mistake .fret-marker {
+    width: 18px;
+    height: 18px;
+  }
+
+  .welcome-dot {
+    width: 22px;
+    height: 22px;
+  }
+
+  .fret-found-label {
+    font-size: 0.58rem;
+  }
+
+  .fretboard-panel {
+    padding: 12px 8px 8px;
+    border-radius: 12px;
+  }
+
+  .note-button {
+    width: calc((100% - 3 * 4px) / 4);
+    height: 36px;
+    border-radius: 18px;
   }
 }
 
@@ -1056,6 +1154,57 @@
 
   .sound-toggle-text {
     font-size: 0.74rem;
+  }
+
+  .control-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fretboard {
+    min-width: 370px;
+  }
+
+  .fret-label-row,
+  .string-row {
+    grid-template-columns: 24px repeat(13, minmax(24px, 1fr));
+  }
+
+  .string-label {
+    left: 21px;
+    font-size: 0.68rem;
+    padding-right: 2px;
+  }
+
+  .fret-label {
+    font-size: 0.54rem;
+  }
+
+  .fret-cell {
+    height: 34px;
+  }
+
+  .fret-cell.is-target .fret-marker,
+  .fret-cell.is-correct .fret-marker,
+  .fret-cell.is-incorrect .fret-marker,
+  .fret-cell.is-found .fret-marker,
+  .fret-cell.has-mistake .fret-marker {
+    width: 16px;
+    height: 16px;
+  }
+
+  .welcome-dot {
+    width: 20px;
+    height: 20px;
+  }
+
+  .fret-found-label {
+    font-size: 0.52rem;
+  }
+
+  .fretboard-panel {
+    padding: 10px 6px 6px;
+    border-radius: 10px;
   }
 
   .progress-panel-head {
@@ -1079,16 +1228,17 @@
   }
 
   .answer-grid {
-    gap: 5px;
+    gap: 4px;
   }
 
   .note-button {
-    width: calc((100% - 5 * 6px) / 4);
-    height: 40px;
+    width: calc((100% - 3 * 4px) / 4);
+    height: 34px;
+    border-radius: 17px;
   }
 
   .stats-row {
-    gap: 6px;
+    gap: 1px;
   }
 
   .stat-chip .stat-value {
