@@ -815,7 +815,7 @@
 
 .note-button:hover:not(:disabled) {
   background: #FFF8EC;
-  box-shadow: 0 0 0 5px rgba(220, 155, 155, 0.38);
+  box-shadow: 0 0 0 5px #99AD7A;
   color: var(--accent-strong);
 }
 
