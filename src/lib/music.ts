@@ -1,7 +1,8 @@
-import type { FretPosition, NoteName, Question, TuningNote } from '../types'
+import type { CircleOfFifthsNoteRound, FretPosition, NoteName, Question, TuningNote } from '../types'
 
 export const NOTE_SEQUENCE: NoteName[] = ['C', 'bD', 'D', 'bE', 'E', 'F', 'bG', 'G', 'bA', 'A', 'bB', 'B']
 export const STANDARD_TUNING: TuningNote[] = ['E', 'B', 'G', 'D', 'A', 'E']
+export const CIRCLE_OF_FIFTHS_COUNTERCLOCKWISE: NoteName[] = ['C', 'F', 'bB', 'bE', 'bA', 'bD', 'bG', 'B', 'E', 'A', 'D', 'G']
 export const MAX_FRET = 12
 export const MIN_PRACTICE_FRET = 1
 export const TOTAL_PRACTICE_POSITIONS = STANDARD_TUNING.length * MAX_FRET
@@ -37,6 +38,32 @@ export function createPracticeQuestions() {
   }
 
   return positions.map((position) => createQuestion(position))
+}
+
+export function getPositionKey(position: FretPosition) {
+  return `${position.stringIndex}-${position.fretIndex}`
+}
+
+export function getPositionsForNote(note: NoteName) {
+  const positions: FretPosition[] = []
+
+  for (let stringIndex = 0; stringIndex < STANDARD_TUNING.length; stringIndex += 1) {
+    for (let fretIndex = MIN_PRACTICE_FRET; fretIndex <= MAX_FRET; fretIndex += 1) {
+      const position = { stringIndex, fretIndex }
+      if (getNoteAtPosition(position) === note) {
+        positions.push(position)
+      }
+    }
+  }
+
+  return positions
+}
+
+export function createCircleOfFifthsRounds(): CircleOfFifthsNoteRound[] {
+  return CIRCLE_OF_FIFTHS_COUNTERCLOCKWISE.map((targetNote) => ({
+    targetNote,
+    targetPositions: getPositionsForNote(targetNote),
+  }))
 }
 
 export function getAccuracy(stats: { correct: number; total: number }) {

@@ -2,29 +2,29 @@
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #111827;
+  color: #3D3D3D;
   background: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --text-main: #111827;
-  --text-muted: #9ca3af;
-  --border: #e5e7eb;
-  --border-muted: #f3f4f6;
-  --panel: #ffffff;
-  --surface: #f9fafb;
-  --accent: #3b82f6;
-  --accent-strong: #2563eb;
-  --accent-light: #eff6ff;
-  --success: #10b981;
-  --success-light: #ecfdf5;
-  --error: #ef4444;
-  --error-light: #fef2f2;
-  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.09);
+  --text-main: #3D3D3D;
+  --text-muted: #8B9A8E;
+  --border: #C0E1D2;
+  --border-muted: #E5EEE4;
+  --panel: #E5EEE4;
+  --surface: #EAF0EA;
+  --accent: #DC9B9B;
+  --accent-strong: #C87E7E;
+  --accent-light: #F5E6E6;
+  --success: #6BAF92;
+  --success-light: #E5EEE4;
+  --error: #DC9B9B;
+  --error-light: #F5E6E6;
+  --shadow-soft: 0 1px 2px rgba(61, 61, 61, 0.06);
+  --shadow-md: 0 4px 12px rgba(61, 61, 61, 0.08);
+  --shadow-lg: 0 8px 24px rgba(61, 61, 61, 0.10);
 }
 
 * {
@@ -82,19 +82,19 @@ h2 {
 
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 4px rgba(220, 155, 155, 0.25);
   }
   50% {
-    box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+    box-shadow: 0 0 0 12px rgba(220, 155, 155, 0);
   }
 }
 
 @keyframes pulseGreen {
   0%, 100% {
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 0 4px rgba(107, 175, 146, 0.25);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 10px rgba(107, 175, 146, 0);
   }
 }
 
@@ -135,4 +135,26 @@ h2 {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes popOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(0.82);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

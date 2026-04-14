@@ -15,6 +15,7 @@ export type NoteName =
 export type TuningNote = NoteName
 
 export type Language = 'zh' | 'en'
+export type PracticeMode = 'identify-note-name' | 'find-all-note-positions'
 
 export type FretPosition = {
   stringIndex: number
@@ -38,7 +39,18 @@ export type PracticeStats = {
   correct: number
 }
 
-export type GameStatus = 'idle' | 'active' | 'answered' | 'completed'
+export type GameStatus = 'idle' | 'active' | 'answered' | 'stage-completed' | 'completed'
+
+export type CircleOfFifthsNoteRound = {
+  targetNote: NoteName
+  targetPositions: FretPosition[]
+}
+
+export type ClickableFretState = {
+  isClickable: boolean
+  isFound: boolean
+  isMistake: boolean
+}
 
 export type Translations = {
   languageLabel: string
@@ -83,4 +95,19 @@ export type Translations = {
   soundOn: string
   soundOff: string
   soundToggleLabel: string
+  modeIdentify: string
+  modeFindAll: string
+  modeSwitcherLabel: string
+  stageMistakesLabel: string
+  stageCompleteTitle: string
+  stageCompleteBody: string
+  continueButton: string
+  viewSummaryButton: string
+  findAllPromptPrefix: string
+  findAllPromptSuffix: string
+  totalProgressLabel: string
+  stageProgressLabel: string
+  subtitleIdentify: string
+  subtitleFindAll: string
+  circleOfFifthsLabel: string
 }

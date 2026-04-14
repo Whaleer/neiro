@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest'
 import {
+  CIRCLE_OF_FIFTHS_COUNTERCLOCKWISE,
   MAX_FRET,
   MIN_PRACTICE_FRET,
   TOTAL_PRACTICE_POSITIONS,
+  createCircleOfFifthsRounds,
   createPracticeQuestions,
   createQuestion,
   getAccuracy,
   getNoteAtPosition,
+  getPositionsForNote,
 } from './music'
 
 describe('music helpers', () => {
@@ -38,6 +41,36 @@ describe('music helpers', () => {
       expect(question.position.stringIndex).toBeLessThanOrEqual(5)
       expect(question.position.fretIndex).toBeGreaterThanOrEqual(MIN_PRACTICE_FRET)
       expect(question.position.fretIndex).toBeLessThanOrEqual(MAX_FRET)
+    }
+  })
+
+  it('provides the counterclockwise circle of fifths order', () => {
+    expect(CIRCLE_OF_FIFTHS_COUNTERCLOCKWISE).toEqual(['C', 'F', 'bB', 'bE', 'bA', 'bD', 'bG', 'B', 'E', 'A', 'D', 'G'])
+  })
+
+  it('finds the six fretboard positions for a target note', () => {
+    const positions = getPositionsForNote('C')
+
+    expect(positions).toHaveLength(6)
+    expect(new Set(positions.map((position) => `${position.stringIndex}-${position.fretIndex}`)).size).toBe(6)
+    expect(positions).toContainEqual({ stringIndex: 0, fretIndex: 8 })
+    expect(positions).toContainEqual({ stringIndex: 4, fretIndex: 3 })
+  })
+
+  it('creates 12 rounds with six target positions each', () => {
+    const rounds = createCircleOfFifthsRounds()
+
+    expect(rounds).toHaveLength(12)
+    expect(rounds[0].targetNote).toBe('C')
+    expect(rounds[1].targetNote).toBe('F')
+
+    for (const round of rounds) {
+      expect(round.targetPositions).toHaveLength(6)
+      expect(new Set(round.targetPositions.map((position) => `${position.stringIndex}-${position.fretIndex}`)).size).toBe(6)
+      for (const position of round.targetPositions) {
+        expect(position.fretIndex).toBeGreaterThanOrEqual(MIN_PRACTICE_FRET)
+        expect(position.fretIndex).toBeLessThanOrEqual(MAX_FRET)
+      }
     }
   })
 

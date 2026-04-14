@@ -30,7 +30,7 @@ export function AnswerPanel({ disabled, onSelect, answerResult, t }: AnswerPanel
             disabled={disabled}
             onClick={() => onSelect(note)}
           >
-            {note}
+            <span className="note-button-label">{note}</span>
           </button>
         ))}
       </div>
