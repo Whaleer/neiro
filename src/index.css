@@ -148,13 +148,11 @@ h2 {
   }
 }
 
-@keyframes breathe {
+@keyframes lakeWave {
   0%, 100% {
-    transform: scale(0.82);
-    opacity: 0.55;
+    transform: scale(0.85);
   }
   50% {
-    transform: scale(1);
-    opacity: 1;
+    transform: scale(1.08);
   }
 }

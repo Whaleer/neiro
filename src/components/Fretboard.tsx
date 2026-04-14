@@ -28,14 +28,37 @@ const NOTE_COLOR_MAP: Record<string, string> = {
   B: '#A0C4B8',
 }
 
-const CENTER_STRING = 2.5
-const CENTER_FRET = 6
+const WAVE_SOURCES = [
+  { s: 2.5, f: 6 },
+  { s: 0.3, f: 10.5 },
+  { s: 5.2, f: 2.5 },
+]
 
-function getWaveDelay(stringIndex: number, fretIndex: number): string {
-  const dx = fretIndex - CENTER_FRET
-  const dy = stringIndex - CENTER_STRING
-  const distance = Math.sqrt(dx * dx + dy * dy)
-  return `${(distance * 0.12).toFixed(2)}s`
+function getWaveStyles(stringIndex: number, fretIndex: number): React.CSSProperties {
+  let bestDist = Infinity
+  let srcIndex = 0
+  WAVE_SOURCES.forEach((src, i) => {
+    const dx = fretIndex - src.f
+    const dy = stringIndex - src.s
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    if (dist < bestDist) {
+      bestDist = dist
+      srcIndex = i
+    }
+  })
+
+  const delays = WAVE_SOURCES.map((src) => {
+    const dx = fretIndex - src.f
+    const dy = stringIndex - src.s
+    return Math.sqrt(dx * dx + dy * dy) * 0.16
+  })
+
+  const durations = [2.8, 3.4, 4.1]
+
+  return {
+    '--wave-delay': `${delays[srcIndex].toFixed(2)}s`,
+    '--wave-duration': `${durations[srcIndex]}s`,
+  } as React.CSSProperties
 }
 
 function getCellClassName(
@@ -152,7 +175,7 @@ export function Fretboard({ mode, question, answerResult, welcomeMode, onCellCli
                         className="welcome-dot"
                         style={{
                           '--dot-color': NOTE_COLOR_MAP[welcomeNote] ?? '#8B9A8E',
-                          '--wave-delay': getWaveDelay(stringIndex, fretIndex),
+                          ...getWaveStyles(stringIndex, fretIndex),
                         } as React.CSSProperties}
                         aria-hidden="true"
                       >
