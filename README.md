@@ -1,73 +1,25 @@
-# React + TypeScript + Vite
+# neiro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+吉他指板音名记忆训练工具。通过可视化指板交互，帮助你建立对每个音名的直觉反应。
 
-Currently, two official plugins are available:
+## 两种练习模式
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 模式一：认音名
 
-## React Compiler
+指板上随机亮起一个位置，从 12 个音名中选出正确答案。覆盖 6 弦 × 1-12 品共 72 个位置，多练几次，音名就会像老朋友一样熟悉。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 模式二：找位置
 
-## Expanding the ESLint configuration
+跟着五度圈的节奏，在指板上找出指定音的所有位置。C → F → bB → … 一轮下来，整个指板就是你的地图了。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 特性
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **可视化指板** — 还原真实吉他指板布局，练习即实战
+- **五度圈引导** — 按五度圈顺序推进，系统性覆盖所有音名
+- **真实音效** — 每个位置播放对应的吉他单音，听觉辅助记忆
+- **即时反馈** — 答对绿色标记，答错红色提示，附带正确答案对照
+- **中英双语** — 支持中文和英文界面切换
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 技术栈
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React + TypeScript + Vite，纯前端单页应用，无需后端。
