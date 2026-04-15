@@ -1,4 +1,16 @@
-# neiro
+<p align="center">
+  <img src="src/assets/layer-mask-01-stroke-rounded.svg" alt="neiro logo" width="72" height="72" />
+</p>
+
+<h1 align="center">neiro</h1>
+
+<p align="center">
+  Guitar fretboard note training for faster visual and auditory recall.
+</p>
+
+<p align="center">
+  © 2026 bingxil. All rights reserved.
+</p>
 
 `neiro` is a front-end guitar fretboard trainer designed to help players memorize note names across the neck through repeated visual and auditory practice.
 

@@ -1,7 +1,7 @@
 .app-shell {
   width: min(1080px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 28px 0 48px;
+  padding: 28px 0 130px;
   position: relative;
 }
 
@@ -398,8 +398,8 @@
   transition: background-color 0.2s ease;
 }
 
-.fret-cell:hover {
-  background: rgba(220, 155, 155, 0.06);
+.fret-cell:not(.open-string):hover {
+  background: radial-gradient(circle, rgba(220, 155, 155, 0.5) 28%, transparent 58%);
 }
 
 .fret-cell.is-clickable {
@@ -407,7 +407,7 @@
 }
 
 .fret-cell.is-clickable:hover {
-  background: rgba(220, 155, 155, 0.12);
+  background: radial-gradient(circle, rgba(220, 155, 155, 0.5) 28%, transparent 58%);
 }
 
 .fret-cell.is-clickable:focus-visible {
@@ -1279,4 +1279,46 @@
   .stat-chip .stat-value {
     font-size: 0.85rem;
   }
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-muted);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 5;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
+.footer-icon {
+  flex-shrink: 0;
+}
+
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  margin: 0;
+  opacity: 0.7;
 }

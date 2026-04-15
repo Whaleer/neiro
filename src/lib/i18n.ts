@@ -58,6 +58,8 @@ const translations: Record<Language, Translations> = {
     findAllPromptSuffix: '',
     totalProgressLabel: '累计进度',
     stageProgressLabel: '阶段进度',
+    footerGithub: '喜欢 neiro 吗？在 GitHub 给个 ⭐ 吧',
+    footerBmc: '如果 neiro 帮到了你，请我喝杯咖啡 ☕',
   },
   en: {
     languageLabel: 'Language',
@@ -116,6 +118,8 @@ const translations: Record<Language, Translations> = {
     findAllPromptSuffix: 'on strings 1 through 6',
     totalProgressLabel: 'Total progress',
     stageProgressLabel: 'Stage progress',
+    footerGithub: 'Enjoying neiro? Give it a ⭐ on GitHub',
+    footerBmc: 'If neiro helped you, buy me a coffee ☕',
   },
 }
 
