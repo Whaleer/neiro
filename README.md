@@ -1,8 +1,7 @@
-<p align="center">
-  <img src="src/assets/layer-mask-01-stroke-rounded.svg" alt="neiro logo" width="72" height="72" />
-</p>
-
-<h1 align="center">neiro</h1>
+<h1 align="center">
+  <img src="src/assets/layer-mask-01-stroke-rounded.svg" alt="neiro logo" width="32" height="32" />
+  neiro
+</h1>
 
 <p align="center">
   Guitar fretboard note training for faster visual and auditory recall.
