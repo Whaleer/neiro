@@ -56,7 +56,6 @@ export type Translations = {
   languageLabel: string
   chinese: string
   english: string
-  heroEyebrow: string
   title: string
   subtitle: string
   boardTitle: string

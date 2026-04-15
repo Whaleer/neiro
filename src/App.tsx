@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import logoSvg from './assets/layer-mask-01-stroke-rounded.svg'
 import { AnswerPanel } from './components/AnswerPanel'
 import { CircleOfFifths } from './components/CircleOfFifths'
 import { Fretboard } from './components/Fretboard'
@@ -171,11 +172,7 @@ function App() {
     setCurrentQuestionIndex(0)
   }
 
-  const handleModeChange = (nextMode: PracticeMode) => {
-    if (nextMode === mode) {
-      return
-    }
-
+  const resetToIdle = () => {
     if (nextQuestionTimeoutRef.current !== null) {
       window.clearTimeout(nextQuestionTimeoutRef.current)
       nextQuestionTimeoutRef.current = null
@@ -184,11 +181,19 @@ function App() {
     mistakeTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId))
     mistakeTimeoutsRef.current = []
 
-    setMode(nextMode)
     setStats(initialStats)
     setGameStatus('idle')
     resetIdentifyState()
     resetFindAllState()
+  }
+
+  const handleModeChange = (nextMode: PracticeMode) => {
+    if (nextMode === mode) {
+      return
+    }
+
+    resetToIdle()
+    setMode(nextMode)
   }
 
   const toggleSound = () => {
@@ -370,12 +375,16 @@ function App() {
   return (
     <main className="app-shell">
       <div className="top-controls-fixed">
+        <button className="brand-link" onClick={resetToIdle} aria-label="Home">
+          <img className="app-logo" src={logoSvg} alt="" />
+          <span className="brand-name">neiro</span>
+        </button>
+        <div className="top-controls-spacer" />
         <SoundToggle enabled={soundEnabled} onToggle={toggleSound} t={t} />
         <LanguageToggle language={language} onChange={setLanguage} />
       </div>
 
       <header className="app-header">
-        <p className="eyebrow">{t.heroEyebrow}</p>
         <h1>{t.title}</h1>
         <p className="subtitle">{isIdentifyMode ? t.subtitleIdentify : t.subtitleFindAll}</p>
       </header>

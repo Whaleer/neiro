@@ -8,11 +8,55 @@
 .top-controls-fixed {
   position: fixed;
   top: 16px;
+  left: 16px;
   right: 16px;
   z-index: 10;
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.top-controls-spacer {
+  flex: 1;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 4px;
+  border-radius: 8px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  font: inherit;
+}
+
+.brand-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.brand-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.app-logo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  user-select: none;
 }
 
 .app-header {
@@ -21,18 +65,9 @@
   animation: slideUp 0.5s ease-out;
 }
 
-.app-header .eyebrow {
-  margin: 0 0 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-size: 0.7rem;
-  color: var(--accent);
-  font-weight: 600;
-}
-
 .app-header .subtitle {
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 1.00rem;
   margin: 0 auto;
   max-width: 520px;
 }
@@ -300,7 +335,7 @@
 
 .fretboard-panel {
   background: #F9F6F1;
-  border: 1px solid var(--border);
+  border: 1px solid #A98B76;
   border-radius: 18px;
   padding: 22px 18px 14px;
   box-shadow: var(--shadow-md);
