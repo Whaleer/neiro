@@ -506,7 +506,7 @@ function App() {
           </section>
         )}
 
-        {isIdentifyMode && (
+        {isIdentifyMode && gameStatus !== 'idle' && (
           <AnswerPanel
             disabled={gameStatus !== 'active'}
             onSelect={submitAnswer}

@@ -779,7 +779,7 @@
 .answer-panel {
   width: 100%;
   max-width: 580px;
-  animation: fadeIn 0.5s ease-out;
+  animation: popOut 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .answer-label {
