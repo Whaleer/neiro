@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  © 2026 bingxil. All rights reserved.
+  Copyright © 2026 bingxil
 </p>
 
 `neiro` is a front-end guitar fretboard trainer designed to help players memorize note names across the neck through repeated visual and auditory practice.
@@ -77,12 +77,9 @@ src/
 - The app uses a lightweight custom i18n implementation instead of a third-party library
 - Sound preferences are persisted in `localStorage`
 
-## Testing
+## License
 
-The project uses `Vitest + jsdom + @testing-library/react + @testing-library/user-event` for both logic and UI coverage.
+Copyright © 2026 bingxil.
 
-Tests are colocated with source files where appropriate, and the app includes mocked audio behavior for stable test runs.
-
-## Purpose
-
-This project is built for focused fretboard note-name training: simple to run, fast to iterate on, and easy to extend as a standalone React application.
+This project is open source and available under the MIT License.
+See the [LICENSE](./LICENSE) file for details.
