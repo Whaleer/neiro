@@ -185,7 +185,7 @@ describe('App', () => {
 
     await user.click(screen.getByRole('button', { name: 'EN' }))
 
-    expect(screen.getByRole('heading', { name: 'Memorize note names directly on the fretboard' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'neiro: Memorize every note on the fretboard' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Start practice' })).toBeInTheDocument()
   })
 })

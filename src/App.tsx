@@ -84,6 +84,7 @@ function App() {
   const [stageMistakes, setStageMistakes] = useState(0)
 
   const [stats, setStats] = useState<PracticeStats>(DEBUG_COMPLETE ? debugCompletedStats : initialStats)
+  const [isFreeMode, setIsFreeMode] = useState(false)
 
   const previousGameStatusRef = useRef<GameStatus>(gameStatus)
   const nextQuestionTimeoutRef = useRef<number | null>(null)
@@ -114,8 +115,8 @@ function App() {
       ? `${t.string} ${currentQuestion.position.stringIndex + 1} · ${t.fret} ${currentQuestion.position.fretIndex}`
       : null
 
-  const stageContinueLabel = currentRoundIndex < findAllRounds.length - 1
-    ? `${t.continueButton} ${findAllRounds[currentRoundIndex + 1]?.targetNote ?? ''}`.trim()
+  const stageContinueLabel = currentRoundIndex < findAllRounds.length - 1 || isFreeMode
+    ? `${t.continueButton} ${findAllRounds[(currentRoundIndex + 1) % findAllRounds.length]?.targetNote ?? ''}`.trim()
     : t.viewSummaryButton
 
   useEffect(() => {
@@ -183,6 +184,7 @@ function App() {
 
     setStats(initialStats)
     setGameStatus('idle')
+    setIsFreeMode(false)
     resetIdentifyState()
     resetFindAllState()
   }
@@ -241,11 +243,15 @@ function App() {
 
   const goToNextFindAllRound = () => {
     if (currentRoundIndex >= findAllRounds.length - 1) {
-      setGameStatus('completed')
-      return
+      if (isFreeMode) {
+        setCurrentRoundIndex(0)
+      } else {
+        setGameStatus('completed')
+        return
+      }
+    } else {
+      setCurrentRoundIndex((currentValue) => currentValue + 1)
     }
-
-    setCurrentRoundIndex((currentValue) => currentValue + 1)
     setFoundPositionKeys([])
     setMistakePositionKeys([])
     setStageMistakes(0)
@@ -258,6 +264,7 @@ function App() {
       return
     }
 
+    setIsFreeMode(true)
     setCurrentRoundIndex(targetIndex)
     setFoundPositionKeys([])
     setMistakePositionKeys([])
