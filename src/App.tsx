@@ -8,7 +8,7 @@ import { PracticePanel } from './components/PracticePanel'
 import { LanguageToggle } from './components/LanguageToggle'
 import { SoundToggle } from './components/SoundToggle'
 import { ModeToggle } from './components/ModeToggle'
-import { playFretNote, playSound, setSoundEnabled } from './lib/audio'
+import { playSound, setSoundEnabled } from './lib/audio'
 import { useTranslations } from './lib/i18n'
 import {
   TOTAL_PRACTICE_POSITIONS,
@@ -290,7 +290,7 @@ function App() {
 
     const isCorrect = selectedNote === currentQuestion.correctNote
     if (isCorrect) {
-      playFretNote(currentQuestion.position)
+      playSound('correct')
     } else {
       playSound('wrong')
     }
@@ -350,7 +350,7 @@ function App() {
       return
     }
 
-    playFretNote(position)
+    playSound('correct')
     setFoundPositionKeys((currentKeys) => {
       const nextKeys = [...currentKeys, key]
       if (nextKeys.length >= currentRound.targetPositions.length) {

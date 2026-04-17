@@ -8,8 +8,7 @@ import * as music from './lib/music'
 describe('App', () => {
   it('keeps mode one flow and auto-advances after a correct answer', async () => {
     const user = userEvent.setup()
-    const playFretNoteSpy = vi.spyOn(audio, 'playFretNote').mockImplementation(() => {})
-    vi.spyOn(audio, 'playSound').mockImplementation(() => {})
+    const playSoundSpy = vi.spyOn(audio, 'playSound').mockImplementation(() => {})
     vi.spyOn(music, 'createPracticeQuestions').mockReturnValue([
       music.createQuestion({ stringIndex: 0, fretIndex: 1 }),
       music.createQuestion({ stringIndex: 1, fretIndex: 2 }),
@@ -20,7 +19,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: '开始练习' }))
     await user.click(screen.getByRole('button', { name: 'F' }))
 
-    expect(playFretNoteSpy).toHaveBeenCalledWith({ stringIndex: 0, fretIndex: 1 })
+    expect(playSoundSpy).toHaveBeenCalledWith('correct')
     expect(screen.getAllByText('回答正确').length).toBeGreaterThan(0)
 
     await waitFor(() => {
@@ -54,7 +53,6 @@ describe('App', () => {
 
   it('handles correct and incorrect clicks in mode two and requires manual continue', async () => {
     const user = userEvent.setup()
-    const playFretNoteSpy = vi.spyOn(audio, 'playFretNote').mockImplementation(() => {})
     const playSoundSpy = vi.spyOn(audio, 'playSound').mockImplementation(() => {})
     vi.spyOn(music, 'createCircleOfFifthsRounds').mockReturnValue([
       {
@@ -84,8 +82,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: '弦 1, 品 8' }))
     await user.click(screen.getByRole('button', { name: '弦 2, 品 1' }))
 
-    expect(playFretNoteSpy).toHaveBeenCalledWith({ stringIndex: 0, fretIndex: 8 })
-    expect(playFretNoteSpy).toHaveBeenCalledWith({ stringIndex: 1, fretIndex: 1 })
+    expect(playSoundSpy).toHaveBeenCalledWith('correct')
     expect(screen.getByText('阶段进度')).toBeInTheDocument()
     expect(screen.getByText('本阶段错误')).toBeInTheDocument()
 

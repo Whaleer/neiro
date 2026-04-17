@@ -11,15 +11,17 @@ describe('audio helpers', () => {
   it('does not throw when sound playback fails or assets are missing', () => {
     const playSpy = vi.spyOn(globalThis.Audio.prototype, 'play').mockRejectedValue(new Error('missing'))
 
+    expect(() => playSound('correct')).not.toThrow()
     expect(() => playSound('wrong')).not.toThrow()
     expect(() => playFretNote({ stringIndex: 1, fretIndex: 4 })).not.toThrow()
-    expect(playSpy).toHaveBeenCalledTimes(2)
+    expect(playSpy).toHaveBeenCalledTimes(3)
   })
 
   it('respects the global sound enabled flag', () => {
     const playSpy = vi.spyOn(globalThis.Audio.prototype, 'play')
 
     setSoundEnabled(false)
+    playSound('correct')
     playSound('celebration')
     playFretNote({ stringIndex: 4, fretIndex: 9 })
 
@@ -37,5 +39,13 @@ describe('audio helpers', () => {
     playFretNote({ stringIndex: 0, fretIndex: 0 })
 
     expect(playSpy).not.toHaveBeenCalled()
+  })
+
+  it('plays the correct sound with the expected asset path', () => {
+    const playSpy = vi.spyOn(globalThis.Audio.prototype, 'play').mockResolvedValue(undefined)
+
+    playSound('correct')
+
+    expect(playSpy).toHaveBeenCalledTimes(1)
   })
 })

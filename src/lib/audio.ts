@@ -1,6 +1,6 @@
 import type { FretPosition } from '../types'
 
-type SoundName = 'wrong' | 'celebration'
+type SoundName = 'correct' | 'wrong' | 'celebration'
 
 type SoundConfig = {
   src: string
@@ -8,6 +8,10 @@ type SoundConfig = {
 }
 
 const SOUND_CONFIG: Record<SoundName, SoundConfig> = {
+  correct: {
+    src: '/sounds/correct.mp3',
+    volume: 0.5,
+  },
   wrong: {
     src: '/sounds/wrong.mp3',
     volume: 0.35,
