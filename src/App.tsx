@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import logoSvg from './assets/layer-mask-01-stroke-rounded.svg'
+import logoSvg from './assets/logo_final.svg'
 import { AnswerPanel } from './components/AnswerPanel'
 import { CircleOfFifths } from './components/CircleOfFifths'
 import { Fretboard } from './components/Fretboard'

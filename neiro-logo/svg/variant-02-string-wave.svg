@@ -1,0 +1,18 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="wave-clip">
+      <circle cx="50" cy="50" r="36"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#wave-clip)">
+    <g fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M 14 50 Q 26 32, 38 50 T 62 50 T 86 50" stroke-width="3" opacity="0.9"/>
+      <path d="M 14 50 Q 26 38, 38 50 T 62 50 T 86 50" stroke-width="1.8" opacity="0.2" transform="translate(0, -8)"/>
+      <path d="M 14 50 Q 26 38, 38 50 T 62 50 T 86 50" stroke-width="1.8" opacity="0.2" transform="translate(0, 8)"/>
+    </g>
+    <circle cx="38" cy="50" r="2.5" fill="currentColor" opacity="0.4"/>
+    <circle cx="62" cy="50" r="2.5" fill="currentColor" opacity="0.4"/>
+  </g>
+  <circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+  <circle cx="50" cy="50" r="3.5" fill="currentColor"/>
+</svg>

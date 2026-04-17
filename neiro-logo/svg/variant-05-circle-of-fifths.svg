@@ -1,0 +1,20 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor">
+    <circle cx="50" cy="50" r="30" stroke-width="2.5"/>
+    <circle cx="50" cy="50" r="18" stroke-width="1.2" opacity="0.25"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="50" cy="20" r="3.5"/>
+    <circle cx="76" cy="35" r="2" opacity="0.2"/>
+    <circle cx="76" cy="65" r="3" opacity="0.45"/>
+    <circle cx="50" cy="80" r="2.5" opacity="0.3"/>
+    <circle cx="24" cy="65" r="2" opacity="0.15"/>
+    <circle cx="24" cy="35" r="3.5" opacity="0.7"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="50" cy="50" r="4"/>
+    <line x1="50" y1="50" x2="50" y2="20" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+    <line x1="50" y1="50" x2="24" y2="35" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+    <line x1="50" y1="50" x2="76" y2="65" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+  </g>
+</svg>
