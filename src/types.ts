@@ -110,5 +110,4 @@ export type Translations = {
   subtitleFindAll: string
   circleOfFifthsLabel: string
   footerGithub: string
-  footerBmc: string
 }
