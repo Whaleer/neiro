@@ -828,13 +828,13 @@
 .answer-grid {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  column-gap: 4px;
+  column-gap: 10px;
   row-gap: 6px;
   justify-content: center;
 }
 
 .note-button {
-  width: 60px;
+  min-width: 60px;
   height: 40px;
   border: none;
   border-radius: 20px;
@@ -1102,14 +1102,17 @@
   }
 
   .answer-grid {
-    gap: 5px;
+    column-gap: 6px;
+    row-gap: 5px;
   }
 
   .note-button {
-    width: 52px;
+    width: auto;
+    min-width: 48px;
     height: 36px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     border-radius: 18px;
+    padding: 0 8px;
   }
 
   .top-controls-fixed {
@@ -1166,9 +1169,11 @@
   }
 
   .note-button {
-    width: calc((100% - 3 * 4px) / 4);
+    width: auto;
+    min-width: 48px;
     height: 36px;
     border-radius: 18px;
+    padding: 0 8px;
   }
 }
 
@@ -1263,13 +1268,17 @@
   }
 
   .answer-grid {
-    gap: 4px;
+    column-gap: 5px;
+    row-gap: 4px;
   }
 
   .note-button {
-    width: calc((100% - 3 * 4px) / 4);
+    width: auto;
+    min-width: 44px;
     height: 34px;
     border-radius: 17px;
+    font-size: 0.78rem;
+    padding: 0 6px;
   }
 
   .stats-row {

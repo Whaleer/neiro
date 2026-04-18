@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="src/assets/layer-mask-01-stroke-rounded.svg" alt="neiro logo" width="32" height="32" />
+  <img src="public/favicon.svg" alt="neiro logo" width="32" height="32" />
   neiro
 </h1>
 
